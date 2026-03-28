@@ -1,4 +1,9 @@
+using Jubiler.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<JubilerContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("JubilerDbConnection")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
