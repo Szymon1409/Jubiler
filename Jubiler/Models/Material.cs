@@ -7,7 +7,8 @@ namespace Jubiler.Models
         public int Id { get; set; }
         [Required]
         [MaxLength(50)]
+        [Display(Name = "Materiał")]
         public string Name { get; set; }
-        public virtual ICollection<Product> Products { get; set; } = new List<Product>();
+        public virtual ICollection<Product>?Products { get; set; } = new List<Product>();
     }
 }
