@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Jubiler.Data;
 using Jubiler.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Jubiler.Controllers
 {
+    [Authorize]
     public class ProductsController : Controller
     {
         private readonly JubilerContext _context;
@@ -20,6 +22,7 @@ namespace Jubiler.Controllers
         }
 
         // GET: Products
+        [AllowAnonymous]
         public async Task<IActionResult> Index(string searchString)
         {
             var products = _context.Products
@@ -34,6 +37,7 @@ namespace Jubiler.Controllers
         }
 
         // GET: Products/Details/5
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)

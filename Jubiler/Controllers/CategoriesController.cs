@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Jubiler.Data;
 using Jubiler.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Jubiler.Controllers
 {
+    [Authorize]
     public class CategoriesController : Controller
     {
         private readonly JubilerContext _context;
@@ -20,6 +22,7 @@ namespace Jubiler.Controllers
         }
 
         // GET: Categories
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Categories.ToListAsync());
