@@ -7,9 +7,13 @@
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
+        var user = await UserManager.GetUserAsync(User);
+
+        var displayLabel = user != null ? $"{user.FirstName} {user.LastName}" : UserManager.GetUserName(User);
+
         <li class="nav-item">
             <a id="manage" class="nav-link text-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Zarządzaj">
-                <i class="bi bi-person-circle"></i> Witaj @UserManager.GetUserName(User)!
+                <i class="bi bi-person-circle"></i> Witaj @displayLabel!
             </a>
         </li>
         <li class="nav-item">
