@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Rejestracja";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5 card bg-dark border-secondary p-4 shadow">
+            <h2 class="text-light text-center mb-4">Załóż nowe konto</h2>
+
+            <form asp-controller="Account" asp-action="Register" method="post">
+
+                <div class="form-floating mb-3">
+                    <input name="login" class="form-control bg-dark text-light border-secondary" placeholder="" required />
+                    <label class="text-secondary">Login</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input name="firstName" class="form-control bg-dark text-light border-secondary" placeholder="" required />
+                    <label class="text-secondary">Imię</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input name="lastName" class="form-control bg-dark text-light border-secondary" placeholder="" required />
+                    <label class="text-secondary">Nazwisko</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="email" name="email" class="form-control bg-dark text-light border-secondary" placeholder="" required />
+                    <label class="text-secondary">Adres Email</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="password" name="password" class="form-control bg-dark text-light border-secondary" placeholder="" required />
+                    <label class="text-secondary">Hasło</label>
+                </div>
+
+                <button type="submit" class="w-100 btn btn-lg btn-success mt-3">Zarejestruj</button>
+            </form>
+
+        </div>
+    </div>
+</div>

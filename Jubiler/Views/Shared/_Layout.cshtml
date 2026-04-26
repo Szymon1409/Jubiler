@@ -22,17 +22,44 @@
                 </button>
 
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Products" asp-action="Index">Lista Biżuterii</a>
+                            <a class="nav-link text-light" asp-controller="Products" asp-action="Index">Lista Biżuterii</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Categories" asp-action="Index">Kategorie</a>
+                            <a class="nav-link text-light" asp-controller="Categories" asp-action="Index">Kategorie</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Materials" asp-action="Index">Materiały</a>
+                            <a class="nav-link text-light" asp-controller="Materials" asp-action="Index">Materiały</a>
                         </li>
                     </ul>
+
+                    <ul class="navbar-nav ms-auto">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item d-flex align-items-center">
+                                <span class="nav-link text-light me-3">
+                                    Witaj, @User.FindFirst("FullName")?.Value!
+                                </span>
+                            </li>
+                            <li class="nav-item">
+                                <form asp-controller="Account" asp-action="Logout" method="post" class="d-flex align-items-center">
+                                    <button type="submit" class="btn btn-outline-danger btn-sm mt-1">Wyloguj</button>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-controller="Account" asp-action="Register">Rejestracja</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-controller="Account" asp-action="Login">Zaloguj</a>
+                            </li>
+                        }
+                    </ul>
+
                 </div>
             </div>
         </nav>

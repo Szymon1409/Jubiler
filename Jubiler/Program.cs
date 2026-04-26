@@ -1,9 +1,15 @@
 using Jubiler.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<JubilerContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("JubilerDbConnection")));
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Account/Login"; // Tu wyśle niezalogowanego, jak wejdzie na zablokowaną stronę
+    });
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -21,6 +27,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapStaticAssets();
